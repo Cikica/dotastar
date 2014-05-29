@@ -28,13 +28,14 @@ define({
 				to     : define.attribute
 			})
 		}
+
 		if ( define.children ) {
-			changes.children = this.make_multiple_nodes({
-				from     : define.children,
-				start_at : 0,
-				into     : [],
-				for      : node
-			})
+				changes.children = this.make_multiple_nodes({
+					from     : ( define.children.constructor === Function ? define.children.call({}) : define.children ),
+					start_at : 0,
+					into     : [],
+					for      : node
+				})
 		}
 		return {
 			changes  : changes,
@@ -46,7 +47,6 @@ define({
 	},
 
 	make_multiple_nodes : function (nodes) {
-
 		if ( nodes.start_at >= nodes.from.length ) {
 			return nodes.into
 		} else {

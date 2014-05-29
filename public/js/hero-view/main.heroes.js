@@ -12,7 +12,7 @@ define({
 			torrent         : {
 				name        : "Torrent",
 				description : "Summons a rising torrent that, after a short delay, hurls enemy units into the sky, stunning, dealing damage and slowing movement speed.",
-				notes       : "",
+				notes       : "The initial bubble effect is only visible to allies. Units tossed in the air will be stunned and still able to be attacked.",
 				video_link  : "",
 				image       : "/media/hero-view/kunkka/spell1.png",
 				stats       : {
@@ -31,7 +31,7 @@ define({
 			tidebringer      : {
 				name        : "Tidebringer",
 				description : "Kunkka's legendary sword grants increased damage and cleaves a large area of effect in front of him for a single strike.",
-				notes       : "",
+				notes       : "Cleave damage is reduced by armor type but not by armor value. Cleave damage goes through magic immunity. Cooldown isn't activated on denies, so the damage bonus is maintained.",
 				video_link  : "",
 				image       : "/media/hero-view/kunkka/spell2.png",
 				stats       : {
@@ -46,7 +46,7 @@ define({
 			x_marks_the_spot : {
 				name        : "X Marks The Spot",
 				description : "Targets a friendly or enemy Hero, marks their position with an X, and returns them to it after several seconds. Kunkka can trigger the return at any time during the duration. Lasts twice as long on allied heroes.",
-				notes       : "",
+				notes       : "If the target becomes magic immune after the cast, the target will not return to the X after the duration. Interrupts channeling spells.",
 				video_link  : "",
 				image       : "/media/hero-view/kunkka/spell3.png",
 				stats       : {

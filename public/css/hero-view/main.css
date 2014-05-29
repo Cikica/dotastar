@@ -217,3 +217,24 @@ body {
 	float: left;
 	margin-left: 5px;
 }
+
+.hero_spell_description { 
+	width: 50%;
+	float: left;
+	display: inline-block;
+}
+
+.hero_spell_story { 
+	width: 100%;
+	float: left;
+	margin-bottom: 31px;
+}
+
+.hero_spell_notes {
+	width      : 100%;
+	padding    : 15px;
+	float      : left;
+	background : #21a76a;
+	font-style: italic;
+	border-radius : 5px;
+}

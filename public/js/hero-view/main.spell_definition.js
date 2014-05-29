@@ -88,6 +88,38 @@ define({
 												}
 											}
 										})
+									},
+									{
+										type      : "div",
+										attribute : { 
+											"class" : "hero_spell_description"
+										},
+										children : function () {
+											var children = [
+												{
+													type      : "div",
+													property : {
+														textContent : member.value.description
+													},
+													attribute : { 
+														"class" : "hero_spell_story"
+													},		
+												}
+											]
+											if ( member.value.notes ) {
+												children = children.concat({
+													type      : "div",
+													property : {
+														textContent : member.value.notes
+													},
+													attribute : { 
+														"class" : "hero_spell_notes"
+													},		
+												})
+											}
+											console.log(children)
+											return children
+										}
 									}
 								]								
 							},
