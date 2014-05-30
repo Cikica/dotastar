@@ -1,6 +1,5 @@
 <?php
 
-require "somethign that dosent exist";
 /*
 |--------------------------------------------------------------------------
 | Register The Laravel Class Loader
