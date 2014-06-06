@@ -18,7 +18,7 @@ Route::get('/', function()
 
 Route::get('/hero/{name}', function($hero_name)
 {
-	print_r(Package\Hero\HeroDatabase::update_hero_pool());
+
 	return View::make('view-heroes', array('hero' => $hero_name ));
 
 });

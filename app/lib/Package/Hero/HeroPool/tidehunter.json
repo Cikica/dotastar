@@ -1,0 +1,80 @@
+{
+	"name"     : "Tidehunter",
+	"class"    : "Leviathan",
+	"quote"    : "Kunkaaaa!!!",
+	"story"    : "The Tidehunter known as Leviathan was once the champion of the Sunken Isles, but his motives are as mysterious as those of his people. We all know the importance of the Drylanders' shipping lanes, how empires may rise and fall according to who controls the open water. Far less is known of the submarine lanes, and how the warring tribes of the Meranthic Diaspora have carved out habitations through endless undersea skirmishes. In the fragile treaties between the Mer and Men, we can glimpse the extent of the drowned empires, but their politics appear complex and opaque. It would seem that Leviathan tired of such petty strife, and set off on his own, loyal only to his abyssal god, Maelrawn the Tentacular. He stalks the shallows now in search of men or meranths who stray into his path, and with a particular loathing for Admiral Kunkka, who has long been his nemesis for reasons lost in the deepest trenches of the sea.",
+	"strength" : {
+		"starting" : "22",
+		"gain"     : "3"
+	},
+	"agility" : {
+		"starting" : "15",
+		"gain"     : "1.5"
+	},
+	"inteligence" : {
+		"starting" : "16",
+		"gain"     : "1.7"
+	},
+	"speed"  : "310",
+	"damage" : "47-53",
+	"armor"  : "3",
+	"mana"   : "208",
+	"health" : "568",
+	"range"  : "128",
+	"sight"  : "1800/800",
+	"missle" : "N/A",
+	"spells"   : {
+			"gush"         : {
+				"name"        : "Gush",
+				"description" : "Summons a gush of water to damage an enemy unit, reducing their movement speed and armor. Lasts 4 seconds.",
+				"notes"       : "",
+				"stats"       : {
+					"damage_type"     : "Magical",
+					"ability"         : "Unit Target",
+					"affects"         : "Enemy Units",
+					"mana_cost"       : "120",
+					"cooldown"        : "12",
+					"damage"          : "110/160/210/260",
+					"slow"            : "40%",
+					"armor_reduction" : "2/3/4/5"
+				}
+			},
+			"kraken_shell"     : {
+				"name"        : "kraken_shell",
+				"description" : "Creates a thick armor shell that reduces physical damage and removes negative buffs when damage received reaches a critical threshold. Kraken Shell does not stack with items that provide Damage Block.",
+				"notes"       : "Only damage from player owned sources is counted towards buff removal. The counter will reset if no player owned damage is taken for 6 seconds. Kraken Shell removes most buffs, even if they are generally not purgable.",
+				"stats"       : {
+					"ability"          : "Passive",
+					"damage_reduction" : "10/20/30/40",
+					"damage_threshold" : "600/550/500/450"
+				}
+			},
+			"anchor_smash" : {
+				"name"        : "Anchor Smash",
+				"description" : "Tidehunter swings his mighty anchor to damage nearby enemies and reduce their attack damage.",
+				"notes"       : "Anchor Smash works on all Ancient creeps except for Roshan.",
+				"stats"       : {
+					"ability"          : "No Target",
+					"damage"           : "75/125/175/225",
+					"damage_reduction" : "60%",
+					"duration"         : "6",
+					"radius"           : "400",
+					"cooldown"         : "7/6/5/4",
+					"mana_cost"        : "30/40/50/60"
+				}
+			},
+			"ravage"         : {
+				"name"        : "Ravage",
+				"ultimate"    : "true",
+				"description" : "Slams the ground, causing tentacles to erupt in all directions, damaging and stunning all nearby enemy units.",
+				"notes"       : "Ravage will hit invisible units. Ravage waves move outwards at a speed of 775.",
+				"stats"       : {
+					"radius"       : "1025",
+					"duration"     : "2.02/2.32/2.77",
+					"damage"       : "200/325/450",
+					"mana_cost"    : "150/225/325",
+					"cooldown"     : "150"
+				}
+			}
+	}
+}

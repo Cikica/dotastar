@@ -1,0 +1,77 @@
+{
+	"name"     : "Sven",
+	"class"    : "Rouge Knight",
+	"quote"    : "I am Sven Baby, I cleave the universe with my mighty blade of Glory!!!",
+	"story"    : "Sven is the bastard son of a Vigil Knight, born of a Pallid Meranth, raised in the Shadeshore Ruins. With his father executed for violating the Vigil Codex, and his mother shunned by her wild race, Sven believes that honor is to be found in no social order, but only in himself. After tending his mother through a lingering death, he offered himself as a novice to the Vigil Knights, never revealing his identity. For thirteen years he studied in his father's school, mastering the rigid code that declared his existence an abomination. Then, on the day that should have been his In-Swearing, he seized the Outcast Blade, shattered the Sacred Helm, and burned the Codex in the Vigil's Holy Flame. He strode from Vigil Keep, forever solitary, following his private code to the last strict rune. Still a knight, yes...but a Rogue Knight. He answers only to himself.",
+	"strength" : {
+		"starting" : "23",
+		"gain"     : "2.7"
+	},
+	"agility" : {
+		"starting" : "21",
+		"gain"     : "2"
+	},
+	"inteligence" : {
+		"starting" : "14",
+		"gain"     : "1.3"
+	},
+	"speed"  : "295",
+	"damage" : "60-62",
+	"armor"  : "5",
+	"mana"   : "182",
+	"health" : "587",
+	"range"  : "128",
+	"sight"  : "1800/800",
+	"missle" : "N/A",
+	"spells"   : {
+		"storm_hammer"         : {
+			"name"        : "Storm Hammer",
+			"description" : "Sven unleashes his magical gauntlet that deals damage and stuns enemy units.",
+			"notes"       : "",
+			"stats"       : {
+				"ability"     : "Unit Target",
+				"affects"     : "Enemy Units",
+				"damage_type" : "Magical",
+				"damage"      : ["100", "175", "250", "325"],
+				"duration"    : ["2"],
+				"radius"      : ["255"],
+				"cooldown"    : ["13"],
+				"mana_cost"   : ["140"]
+			},
+		"great_cleave"         : {
+			"name"        : "Great Cleave",
+			"description" : "Sven strikes with great force, cleaving all nearby enemy units with his attack.",
+			"notes"       : "Cleave damage is reduced by armor type but not by armor value. Cleave damage goes through magic immunity. The cleave damages a circular area in front of Sven.",
+			"stats"       : {
+				"ability"       : "Passive",
+				"radius"        : ["300"],
+				"cleave_damage" : ["20%", "35%", "50%","65%"],
+			}
+		},
+		"warcry"         : {
+			"name"        : "Warcry",
+			"description" : "Sven's Warcry heartens his allies for battle, increasing their movement speed and armor. Lasts 7 seconds.",
+			"notes"       : "Fully stacks with other armor and speed granting abilities.",
+			"stats"       : {
+				"ability"     : "No Target",
+				"radius"      : ["900"],
+				"bonus_armor" : ["4", "8", "12","16"],
+				"bonus_speed" : ["12%"],
+				"cooldown"    : ["32", "26", "20", "14"],
+				"mana_cost"   : ["25"]
+			}
+		},
+		"gods_strength"         : {
+			"ultimate"    : "true",
+			"name"        : "God's Strength",
+			"description" : "Sven channels his rogue strength, granting bonus damage for 25 seconds.",
+			"notes"       : "The bonus damage is based on base damage and the primary attribute of Sven.",
+			"stats"       : {
+				"ability"      : "No Target",
+				"bonus_damage" : ["100%", "150%", "200%"],
+				"mana_cost"    : ["100", "150", "200"],
+				"cooldown"     : ["80"],
+			}
+		}
+	}
+}

@@ -1,0 +1,83 @@
+{
+	"name"     : "Rigor Stonehoof",
+	"class"    : "Earthshaker",
+	"quote"    : "What are men to rocks & mountains.",
+	"story"    : "Like a golem or gargoyle, Earthshaker was one with the earth but now walks freely upon it. Unlike those other entities, he created himself through an act of will, and serves no other master. In restless slumbers, encased in a deep seam of stone, he became aware of the life drifting freely above him. He grew curious. During a season of tremors, the peaks of Nishai shook themselves loose of avalanches, shifting the course of rivers and turning shallow valleys into bottomless chasms. When the land finally ceased quaking, Earthshaker stepped from the settling dust, tossing aside massive boulders as if throwing off a light blanket. He had shaped himself in the image of a mortal beast, and named himself Raigor Stonehoof. He bleeds now, and breathes, and therefore he can die. But his spirit is still that of the earth; he carries its power in the magical totem that never leaves him. And on the day he returns to dust, the earth will greet him as a prodigal son.",
+	"strength" : {
+		"starting" : "22",
+		"gain"     : "2.9"
+	},
+	"agility" : {
+		"starting" : "12",
+		"gain"     : "1.4"
+	},
+	"inteligence" : {
+		"starting" : "16",
+		"gain"     : "1.8"
+	},
+	"speed"  : "310",
+	"damage" : "46-56",
+	"armor"  : "3",
+	"mana"   : "208",
+	"health" : "568",
+	"range"  : "128",
+	"sight"  : "1800/800",
+	"missle" : "N/A",
+	"spells"   : {
+		"fissure"         : {
+			"name"        : "Fissure",
+			"description" : "Slams the ground with a mighty totem, fissuring the earth while stunning and damaging enemy units in a line. Creates an impassable ridge of stone.",
+			"notes"       : "Creeps will wait for Fissure to disappear. They will not attempt to walk around it.",
+			"stats"       : {
+				"ability"          : "Unit Target, Point Target",
+				"affects"          : "Enemy Units",
+				"damage_type"      : "Magical",
+				"damage"           : ["125","175","225","275"],
+				"fissure_range"    : ["1400"],
+				"fissure_duration" : ["8"],
+				"stun_duration"    : ["1","1.25","1.5","1.75"],
+				"cooldown"         : ["15"],
+				"mana_cost"        : ["125","140","155","170"]
+			}
+		},
+		"enchant_totem"         : {
+			"name"        : "Enchant Totem",
+			"description" : "Empowers Earthshaker's totem, causing it to deal extra damage on the next attack.",
+			"notes"       : "Bonus damage is based on base damage and that given by primary attribute.",
+			"stats"       : {
+				"ability"      : "No Target",
+				"bonus_damage" : ["100%", "200%", "300%", "400%"],
+				"duration"     : ["14"],
+				"cooldown"     : ["5"],
+				"mana_cost"    : ["50"]
+			}
+		},
+		"aftershock"         : {
+			"name"        : "Aftershock",
+			"description" : "Causes the earth to shake underfoot, adding additional damage and stuns to nearby enemy units when Earthshaker casts his abilities.",
+			"notes"       : "Using items does not trigger Aftershock.",
+			"stats"       : {
+				"ability"     : "Passive",
+				"damage_type" : "Magical",
+				"damage"      : ["50", "75", "100", "125"],
+				"radius"      : ["300"],
+				"duration"    : ["0.6", "0.9", "1.2", "1.5"]
+			}
+		},
+		"echo_slam"       : {
+			"name"        : "Echo Slam",
+			"ultimate"    : "true",
+			"description" : "Shockwaves travel through the ground, damaging enemy units. Each enemy hit causes an echo to damage nearby units. Upgradable by Aghanim's Scepter.",
+			"notes"       : "Will not damage ethereal units, such as those in Ghost Form. The initial damage will go through magic immunity; the additional damage will not. Units creating echoes also take damage from the wave they produced.",
+			"stats"       : {
+				"ability"     : "No Target",
+				"damage_type" : "Magical",
+				"damage"      : ["160", "210", "270"],
+				"radius"      : ["525"],
+				"echo_damage" : ["40", "55", "70"],
+				"cooldown"    : ["150","130","110"],
+				"mana_cost"   : ["145", "205", "265"]
+			}
+		},
+	}
+}

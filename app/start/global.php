@@ -79,3 +79,7 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+HeroDatabase::check_if_hero_pool_needs_updating_and_update_if_it_does();
+
+
