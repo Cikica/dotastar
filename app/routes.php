@@ -13,7 +13,13 @@
 
 Route::get('/', function()
 {
-	return Redirect::to('heroe');
+	return Redirect::to('hero/kunkka');
+});
+
+
+Route::any('/hero/{name}/', function ( $name ) 
+{
+
 });
 
 Route::get('/hero/{name}', function($hero_name)

@@ -184,7 +184,8 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-		'HeroDatabase'    => 'Package\Hero\HeroDatabase'
+		'HeroDatabase'    => 'Package\Hero\HeroDatabase',
+		'RED'             => 'Library\RedisElasticData'
 	),
 
 );

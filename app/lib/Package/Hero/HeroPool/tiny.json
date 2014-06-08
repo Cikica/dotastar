@@ -1,8 +1,10 @@
 {
 	"name"     : "Tiny",
 	"class"    : "Stone Giant",
+	"alias"    : "tiny",
 	"quote"    : "A Rolling Stone.",
 	"story"    : "Coming to life as a chunk of stone, Tiny's origins are a mystery on which he continually speculates. He is a Stone Giant now, but what did he used to be? A splinter broken from a Golem's heel? A shard swept from a gargoyle-sculptor's workshop? A fragment of the Oracular Visage of Garthos? A deep curiosity drives him, and he travels the world tirelessly seeking his origins, his parentage, his people. As he roams, he gathers weight and size; the forces that weather lesser rocks, instead cause Tiny to grow and ever grow.",
+	"attribute": "strength",
 	"strength" : {
 		"starting" : "24",
 		"gain"     : "3"
@@ -29,13 +31,13 @@
 			"description" : "Bombards an area with rocks, stunning and damaging enemy land units.",
 			"notes"       : "Deals damage over a 1 second duration.",
 			"stats"       : {
-				"ability" : "Point Target",
-				"damage_type" : "Magical",
-				"damage" : ["100", "180", "260", "300"],
-				"radius" : ["275"],
-				"stun_duration" : ["1"],
-				"cooldown" : ["17"],
-				"mana_cost" : ["120"]
+				"ability"       : "Point Target",
+				"damage_type"   : "Magical",
+				"damage"        : "100/180/260/300",
+				"radius"        : "275",
+				"stun_duration" : "1",
+				"cooldown"      : "17",
+				"mana_cost"     : "120"
 			}
 		},
 		"toss"         : {
@@ -45,11 +47,11 @@
 			"stats"       : {
 				"ability"       : "Unit Target",
 				"damage_type"   : "Magical",
-				"damage"        : ["75", "150", "225", "300"],
-				"radius"        : ["275"],
-				"range"         : ["1300"],
-				"cooldown"      : ["9"],
-				"mana_cost"     : ["120"]
+				"damage"        : "75/150/225/300",
+				"radius"        : "275",
+				"range"         : "1300",
+				"cooldown"      : "9",
+				"mana_cost"     : "120"
 			}
 		},
 		"craggy_exterior"         : {
@@ -59,11 +61,11 @@
 			"stats"       : {
 				"ability"        : "Passive",
 				"damage_type"    : "Magical",
-				"damage"         : ["25", "35", "45", "55"],
-				"range"          : ["300"],
-				"stun_duration"  : ["1","1.25","1.5", "1.75"],
-				"chance_to_stun" : ["10%", "15%","20%","25%"],
-				"bonus_armor"    : ["2", "3","4","5"]
+				"damage"         : "25/35/45/55",
+				"range"          : "300",
+				"stun_duration"  : "1/1.25/1.5/1.75",
+				"chance_to_stun" : "10%/15%/20%/25%",
+				"bonus_armor"    : "2/3/4/5"
 			}
 		},
 		"grow"         : {
@@ -73,10 +75,10 @@
 			"notes"       : "",
 			"stats"       : {
 				"ability"           : "Passive",
-				"bonus_damage"      : ["50", "100", "150"],
-				"attack_speed_loss" : ["20","35","50"],
-				"movement_speed"    : ["20","40","60"],
-				"toss_bonus"        : ["35%","50%","65%"]
+				"bonus_damage"      : "50/100/150",
+				"attack_speed_loss" : "20/35/50",
+				"movement_speed"    : "20/40/60",
+				"toss_bonus"        : "35%/50%/65%"
 			}
 		}
 	}
