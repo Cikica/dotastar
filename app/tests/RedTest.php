@@ -2,6 +2,20 @@
 
 class RedTest extends TestCase {
 
+	public function testDel () {
+		RED::set( "redtr", [
+			"level1" => "stuff", 
+			"level2" => ["stuff"],
+			"level3" => [
+				"s" => "stuff"
+			],
+		]);
+
+		RED::del( "redtr" );
+		
+		$this->assertFalse( RED::get( "redtr" ) );
+	}
+
 	public function testGetSingleKeyValueBasedOnMapKey () {
 		$data = [
 			"level1" => "stuff", 
@@ -68,6 +82,8 @@ class RedTest extends TestCase {
 		$this->assertEquals( $data['level3'], RED::get( "redtr:level3" ) );
 		$this->assertEquals( $data, RED::get( "redtr" ) );
 		$this->assertEquals( $data, RED::get( "redtr:" ) );
+		Redis::del("redtr:RED_map");
+		$this->assertFalse( RED::get( "redtr:" ) );
 	}
 
 	public function testGetKeyMap () {

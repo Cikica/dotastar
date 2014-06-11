@@ -7,49 +7,18 @@ define({
 	make : function (make) {
 
 		var hero
-
-		hero = this.components.heroes[make.current.for_hero]
+		hero = make.current.hero
+		console.log(hero)
 		this.library.node_maker.make_node({
 			type      : "div",
 			attribute : { 
 				"class" : "hero_view"
 			},
 			children : [
-				// naviagtion
 				{
 					type : "div",
 					attribute : { 
 						"class" : "hero_view_navigation"
-					},
-					children : [
-						{
-							type : "select",
-							attribute : { 
-								"class" : "hero_select"
-							},
-							children : this.library.morphism.homomorph({
-								object : this.components.heroes,
-								set    : "array",
-								with   : function (member) {
-									return {
-										type : "option",
-										property : {
-											textContent : member.value.name
-										},
-										attribute : { 
-											value : member.property_name
-										}
-									}
-								}
-							})
-						},
-					]
-				},
-				// buttons
-				{
-					type : "div",
-					attribute : {
-						"class" : "hero_buttons"
 					},
 					children : [
 						{
@@ -78,6 +47,26 @@ define({
 							attribute : {
 								"class" : "hero_button"
 							},
+						},
+						{
+							type : "select",
+							attribute : { 
+								"class" : "hero_select"
+							},
+							children : this.library.morphism.index_loop({
+								array   : make.current.heroes,
+								else_do : function (loop) {
+									return loop.into.concat({
+										type     : "option",
+										property : {
+											textContent : loop.indexed
+										},
+										attribute : { 
+											value : "/hero/"+ loop.indexed
+										}
+									})
+								}
+							})
 						},
 					]
 				},
@@ -134,7 +123,7 @@ define({
 								{
 									type      : "img",
 									property  : {
-										src : hero.portrait
+										src : "/media/hero-view/"+ hero.alias +"/portrait.png"
 									},
 									attribute : {
 										"class" : "hero_image"

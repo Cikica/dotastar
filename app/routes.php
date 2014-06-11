@@ -16,16 +16,11 @@ Route::get('/', function()
 	return Redirect::to('hero/kunkka');
 });
 
-
-Route::any('/hero/{name}/', function ( $name ) 
-{
-
-});
-
 Route::get('/hero/{name}', function($hero_name)
 {
-
-	return View::make('view-heroes', array('hero' => $hero_name ));
-
+	return View::make('view-heroes', array(
+		'hero'   => str_replace("'", "\'", json_encode( Hero::get( $hero_name ) ) ),
+		'heroes' => json_encode( RED::get('hero#list') )
+	));
 });
 

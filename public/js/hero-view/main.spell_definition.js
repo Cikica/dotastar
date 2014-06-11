@@ -39,7 +39,7 @@ define({
 									{
 										type      : "img",
 										attribute : { 
-											src     : member.value.image,
+											src     : "/media/hero-view/"+ hero.alias +"/"+ member.property_name +".png",
 											"class" : "hero_spell_icon"
 										}
 									},
@@ -117,7 +117,6 @@ define({
 													},		
 												})
 											}
-											console.log(children)
 											return children
 										}
 									}

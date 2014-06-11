@@ -10,7 +10,8 @@
 	<div id="hero-view" class="hero_main"></div>
 	<script>
 		window.hero_view.make({
-			for_hero    : "<?php echo $hero; ?>",
+			hero        : JSON.parse( '<?php echo $hero; ?>' ),
+			heroes      : JSON.parse( '<?php echo $heroes; ?>' ),
 			inside      : document.getElementById("hero-view"),
 			class_names : {}
 		})

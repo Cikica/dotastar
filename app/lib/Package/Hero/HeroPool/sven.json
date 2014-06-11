@@ -29,7 +29,7 @@
 		"storm_hammer"         : {
 			"name"        : "Storm Hammer",
 			"description" : "Sven unleashes his magical gauntlet that deals damage and stuns enemy units.",
-			"notes"       : "",
+			"notes"       : "The ability must target an enemy unit but will stun other enemies in a AOE the targeted unit. Therefore it is possible to stun multiple heroes.",
 			"stats"       : {
 				"ability"     : "Unit Target",
 				"affects"     : "Enemy Units",

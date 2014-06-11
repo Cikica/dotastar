@@ -40,30 +40,28 @@
 				"mana_cost"    : "120"
 			}
 		},
-		"call_of_the_wild"         : [
-			{
-				"name"        : "Hawk",
-				"description" : "Beastmaster calls a watchful Hawk. Level 1: Summons a Scout Hawk. Level 2: Summons a Scout Hawk. Level 3: Summons a Greater Hawk. Level 4: Summons a Greater Hawk.",
-				"notes"       : "",
-				"stats"       : {
-					"ability"       : "No Target",
-					"cooldown"      : "40",
-					"mana_cost"     : "15",
-					"hawk_duration" : "60"
-				}
-			},
-			{
-				"name"        : "Boar",
-				"description" : "Beastmaster calls a powerful Boar. Level 1: Not Available. Level 2: Summons a Lesser Boar. Level 3: Summons a Lesser Boar. Level 4: Summons a Greater Boar.",
-				"notes"       : "The Boar has a poisonous attack that slows movement and attack speed by 20% (35% for Greater Boar).",
-				"stats"       : {
-					"ability"        : "No Target",
-					"cooldown"       : "40",
-					"mana_cost"      : "15",
-					"boar_duration"  : "0/40/40/40"
-				}
+		"call_of_the_wild_hawk"         : {
+			"name"        : "Call Of The Wild - Hawk",
+			"description" : "Beastmaster calls a watchful Hawk. Level 1: Summons a Scout Hawk. Level 2: Summons a Scout Hawk. Level 3: Summons a Greater Hawk. Level 4: Summons a Greater Hawk.",
+			"notes"       : "",
+			"stats"       : {
+				"ability"       : "No Target",
+				"cooldown"      : "40",
+				"mana_cost"     : "15",
+				"hawk_duration" : "60"
 			}
-		],
+		},
+		"call_of_the_wild_boar"         : {
+			"name"        : "Call Of The Wild - Boar",
+			"description" : "Beastmaster calls a powerful Boar. Level 1: Not Available. Level 2: Summons a Lesser Boar. Level 3: Summons a Lesser Boar. Level 4: Summons a Greater Boar.",
+			"notes"       : "The Boar has a poisonous attack that slows movement and attack speed by 20% (35% for Greater Boar).",
+			"stats"       : {
+				"ability"        : "No Target",
+				"cooldown"       : "40",
+				"mana_cost"      : "15",
+				"boar_duration"  : "0/40/40/40"
+			}
+		},
 		"inner_beast"         : {
 			"name"        : "Inner Beast",
 			"description" : "Untaps the inner fury of allies, passively increasing their attack speed.",

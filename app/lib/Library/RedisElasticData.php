@@ -7,11 +7,46 @@
 
 class RedisElasticData {
 
+	static function set ( $to_key, $what ) {
+
+		$data_is = RedisElasticData::get_the_data_types_of_this_value( $what );
+		$map     = RedisElasticData::map_data( $what, ( $data_is['multi_dimensional'] ? "$to_key:" : $to_key ) );
+
+		RedisElasticData::del( $to_key );
+		RedisElasticData::set_hash([
+			'key'   => "$to_key:RED_map",
+			'value' => $map['type']
+		]);
+
+		foreach ( $map['value'] as $key => $value ) {
+
+			$type = $map['type'][$key];
+			\Redis::del( $key );
+			switch ( $type ) {
+				case 'string':
+					\Redis::set( $key, $value );
+					break;
+				case 'list':
+					\Redis::lpush( $key, $value );
+					break;
+				case 'hash':
+					RedisElasticData::set_hash([
+						'key'   => $key,
+						'value' => $value
+					]);
+			}
+		}
+	}
+
 	static function get ( $key ) {
 
 		$do_we_get_single_value_key = RedisElasticData::is_key_multi_dimensional( $key );
 		$key_map                    = RedisElasticData::get_key_map( $key );
 		
+		if ( empty( $key_map ) ) {
+			return false;
+		}
+
 		if ( $do_we_get_single_value_key ) {
 			return RedisElasticData::get_single_key_value_based_on_map_key([
 				'type' => $key_map[$key],
@@ -24,6 +59,22 @@ class RedisElasticData {
 			]);
 		}
 	}
+
+	static function del ( $key ) {
+
+		$do_we_get_single_value_key = RedisElasticData::is_key_multi_dimensional( $key );
+		$key_map                    = RedisElasticData::get_key_map( $key );
+		
+		\Redis::del( "$key:RED_map" );
+		if ( $do_we_get_single_value_key ) {
+			\Redis::del( $key );
+		} else {
+			foreach ($key_map as $key_path => $key_type) {
+				\Redis::del( $key_path );
+			}
+		}
+	}
+
 
 	static function get_single_key_value_based_on_map_key ( $key ) {
 		switch ( $key['type'] ) {
@@ -59,36 +110,6 @@ class RedisElasticData {
 	static function get_key_map ( $key ) {
 		$key_root = explode( ':', $key )[0];
 		return \Redis::hgetall( "$key_root:RED_map" );
-	}
-
-	static function set ( $to_key, $what ) {
-
-		$data_is = RedisElasticData::get_the_data_types_of_this_value( $what );
-		$map     = RedisElasticData::map_data( $what, ( $data_is['multi_dimensional'] ? "$to_key:" : $to_key ) );
-
-		RedisElasticData::set_hash([
-			'key'   => "$to_key:RED_map",
-			'value' => $map['type']
-		]);
-
-		foreach ( $map['value'] as $key => $value ) {
-
-			$type = $map['type'][$key];
-			\Redis::del( $key );
-			switch ( $type ) {
-				case 'string':
-					\Redis::set( $key, $value );
-					break;
-				case 'list':
-					\Redis::lpush( $key, $value );
-					break;
-				case 'hash':
-					RedisElasticData::set_hash([
-						'key'   => $key,
-						'value' => $value
-					]);
-			}
-		}
 	}
 
 	static function map_data ( $data, $map_key = '' ) {
