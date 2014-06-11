@@ -4,71 +4,201 @@
 * a redis abstraction class over the normal Redis class in laravel, adds the ability to pass a full objet and 
 * get a multi dimensional version of the object represented in redis. Watch this spot for examples
 */
-// test {
-// 	"RED_definition" : {
-// 		"base1:root1"         : "hash",
-// 		"base1:root2"         : "sorted-set",
-// 		"base1:root3"         : "string",
-// 		"base1:root4"         : "set",
-// 		"base1:root5:base2_1" : "string",
-// 		"base1:root5:base2"   : "hash",
-// 	},
-// 	"base1" : {
-// 		"root1" : {
-// 			"name" : "stuff",
-// 			"age" : "other"
-// 		},
-// 		"root2" : ["1","2","3"],
-// 		"root3" : "string",
-// 		"root4" : ["1","1","2"],
-// 		"root5" : {
-// 			"base2_1" : "strugg",
-// 			"base2" : {
-// 				"name" : "agata"
-// 			}
-// 		}
-// 	}
-// }
+
 class RedisElasticData {
-	
-	static function set () {
+
+	static function get ( $key ) {
+
+		$do_we_get_single_value_key = RedisElasticData::is_key_multi_dimensional( $key );
+		$key_map                    = RedisElasticData::get_key_map( $key );
 		
+		if ( $do_we_get_single_value_key ) {
+			return RedisElasticData::get_single_key_value_based_on_map_key([
+				'type' => $key_map[$key],
+				'path' => $key 
+			]);
+		} else {
+			return RedisElasticData::get_multi_dimensional_array_out_of_a_key_map([
+				'map'  => $key_map,
+				'root' => explode( ':', $key )[0]
+			]);
+		}
 	}
 
-	static function map_data ($data) {
-		
-		$map = [];
+	static function get_single_key_value_based_on_map_key ( $key ) {
+		switch ( $key['type'] ) {
+			case 'string':
+				return \Redis::get( $key['path'] );
+				break;
+			case 'list' : 
+				return \Redis::lrange( $key['path'], 0, -1 );
+				break;
+			case 'hash' : 
+				return \Redis::hgetall( $key['path'] );
+				break;
+		}
+	}
 
-		foreach ($data as $key => $value) {
-			
-			if ( is_array( $value ) ) {
+	static function get_multi_dimensional_array_out_of_a_key_map ( $key ) {
 
-				$is_multi_dimensional = RedisElasticData::is_this_array_multi_dimensional( $value );
-				$is_sequential        = RedisElasticData::is_this_array_sequential( $value );
+		$array = [];
 
-				if ( $is_multi_dimensional && $is_sequential ) {
-					throw new \Exception( "You are trying to pass a mutli dimensional squential array, which is a no no. It has to be key value if you want it to be multi dimensional" );
-				}
+		foreach ($key['map'] as $map_key => $value_type) {
+			array_set( 
+				$array, 
+				str_replace( ':', '.', $map_key ), 
+				RedisElasticData::get_single_key_value_based_on_map_key([
+					'type' => $value_type,
+					'path' => $map_key
+				])
+			);
+		}
+		return $array[$key['root']];
+	}
 
-				if ( $is_sequential) {
-					$map[$key] = 'list';
-				}
+	static function get_key_map ( $key ) {
+		$key_root = explode( ':', $key )[0];
+		return \Redis::hgetall( "$key_root:RED_map" );
+	}
 
-				if ( !$is_multi_dimensional && !$is_sequential ) {
-					$map[$key] = 'hash';
-				}
+	static function set ( $to_key, $what ) {
 
-				if ( $is_multi_dimensional ) {
-					$map[$key] = 'red';
-				}
-			}
+		$data_is = RedisElasticData::get_the_data_types_of_this_value( $what );
+		$map     = RedisElasticData::map_data( $what, ( $data_is['multi_dimensional'] ? "$to_key:" : $to_key ) );
 
-			if ( is_string( $value ) ) {
-				$map[$key] = 'string';
+		RedisElasticData::set_hash([
+			'key'   => "$to_key:RED_map",
+			'value' => $map['type']
+		]);
+
+		foreach ( $map['value'] as $key => $value ) {
+
+			$type = $map['type'][$key];
+			\Redis::del( $key );
+			switch ( $type ) {
+				case 'string':
+					\Redis::set( $key, $value );
+					break;
+				case 'list':
+					\Redis::lpush( $key, $value );
+					break;
+				case 'hash':
+					RedisElasticData::set_hash([
+						'key'   => $key,
+						'value' => $value
+					]);
 			}
 		}
+	}
 
-		return $map;
+	static function map_data ( $data, $map_key = '' ) {
+		
+		$type_map  = [];
+		$value_map = [];
+		$data_is   = RedisElasticData::get_the_data_types_of_this_value($data);
+
+		if ( $data_is['multi_dimensional'] ) {
+
+			foreach ($data as $key => $value) {
+
+				$map = RedisElasticData::create_map_for_value(
+					$map_key . $key,
+					$value,
+					$type_map,
+					$value_map
+				);
+
+				$type_map  = $map['type'];
+				$value_map = $map['value'];
+			}
+
+		} else {
+
+			$map = RedisElasticData::create_map_for_value(
+				$map_key,
+				$data,
+				$type_map,
+				$value_map
+			);
+
+			$type_map  = $map['type'];
+			$value_map = $map['value'];
+		}
+
+		return [
+			'type'  => $type_map,
+			'value' => $value_map
+		];
+	}
+
+	static function set_hash ( $hash ) {
+		foreach ($hash['value'] as $key => $value) {
+			\Redis::hset( $hash['key'], $key, $value );
+		}
+	}
+
+	static function is_key_multi_dimensional ( $key ) {
+		$exploded_key = explode( ':', $key );
+		return ( count( $exploded_key ) > 1 and !empty( $exploded_key[1] ) );
+	}
+
+	static function create_map_for_value ( $key, $value, $type_map, $value_map ) {
+
+		$data_is = RedisElasticData::get_the_data_types_of_this_value( $value );
+
+		if ( $data_is['multi_dimensional'] and $data_is['sequential'] ) {
+			throw new \Exception( "You are trying to pass a mutli dimensional squential array, which is a no no. It has to be key value if you want it to be multi dimensional" );
+		}
+
+		if ( $data_is['sequential'] ) {
+			$type_map[$key]  = 'list';
+			$value_map[$key] = $value;
+		}
+
+		if ( !$data_is['multi_dimensional'] and $data_is['key_value'] ) {
+			$type_map[$key]  = 'hash';
+			$value_map[$key] = $value;
+		}
+
+		if ( $data_is['string'] ) {
+			$type_map[$key]  = 'string';
+			$value_map[$key] = $value;
+		}
+
+		if ( $data_is['multi_dimensional'] ) {
+			$new_map   = RedisElasticData::map_data( $value, "$key:" );
+			$type_map  = array_merge( $type_map, $new_map['type'] );
+			$value_map = array_merge( $value_map, $new_map['value'] );
+		}
+
+		return [
+			'type' => $type_map,
+			'value' => $value_map
+		];
+	}
+
+	static function get_the_data_types_of_this_value ( $value ) {
+
+		$is = [
+			'sequential'        => false,
+			'multi_dimensional' => false,
+			'key_value'         => false,
+			'string'            => false,
+		];
+
+		if ( is_array( $value ) ) {
+
+			$is['sequential']        = RedisElasticData::is_this_array_sequential( $value );
+			$is['multi_dimensional'] = RedisElasticData::is_this_array_multi_dimensional( $value );
+			$is['key_value']         = ( !$is['sequential'] ? true : false );
+
+		} else {
+
+			$is['string'] = true;
+		}
+
+		return $is;
+
 	}
 
 	static function is_this_array_sequential ( $array ) {
