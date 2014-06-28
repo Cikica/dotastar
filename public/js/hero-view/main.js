@@ -8,7 +8,6 @@ define({
 
 		var hero
 		hero = make.current.hero
-		console.log(hero)
 		this.library.node_maker.make_node({
 			type      : "div",
 			attribute : { 
@@ -21,24 +20,6 @@ define({
 						"class" : "hero_view_navigation"
 					},
 					children : [
-						{
-							type     : "div",
-							property : { 
-								textContent : "Spells",
-							},
-							attribute : {
-								"class" : "hero_button"
-							},
-						},
-						{
-							type     : "div",
-							property : { 
-								textContent : "Stats",
-							},
-							attribute : {
-								"class" : "hero_button"
-							},
-						},
 						{
 							type     : "div",
 							property : { 
@@ -56,15 +37,19 @@ define({
 							children : this.library.morphism.index_loop({
 								array   : make.current.heroes,
 								else_do : function (loop) {
-									return loop.into.concat({
+									var option = {
 										type     : "option",
 										property : {
 											textContent : loop.indexed
 										},
 										attribute : { 
-											value : "/hero/"+ loop.indexed
+											value    : "/hero/"+ loop.indexed
 										}
-									})
+									}
+									if ( loop.indexed === hero.alias ) { 
+										option.attribute.selected = "selected"
+									}
+									return loop.into.concat(option)
 								}
 							})
 						},
@@ -84,7 +69,7 @@ define({
 							},
 							children  : [
 								this.components.spell_definition.make(hero),
-								this.components.stats_definition.make(hero)
+								// this.components.stats_definition.make(hero)
 							]
 						},
 						{
@@ -129,6 +114,7 @@ define({
 										"class" : "hero_image"
 									},
 								},
+								this.components.stats_definition.make(hero)
 							]
 						}
 					]

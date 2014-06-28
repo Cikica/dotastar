@@ -1,3 +1,3 @@
-## Dota Start ## 
-
-An app for all your dota needs, or soon to be atleast.
+### Dotastar ###
+## Gather all the knowledge ##
+An app for making you a better player.

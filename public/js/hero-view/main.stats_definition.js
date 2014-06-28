@@ -1,5 +1,8 @@
 define({
 	make : function (hero) { 
+		
+		console.log( hero )
+
 		return {
 			type      : "div",
 			attribute : {
@@ -21,42 +24,6 @@ define({
 								{
 									type     : "div",
 									property : { 
-										textContent : "|"
-									},
-									attribute : {
-										"class" : "hero_attribute_title"
-									}
-								},
-								{
-									type     : "div",
-									property : { 
-										textContent : "Starting"
-									},
-									attribute : {
-										"class" : "hero_attribute_side_title"
-									}
-								},
-								{
-									type     : "div",
-									property : { 
-										textContent : "Gain"
-									},
-									attribute : {
-										"class" : "hero_attribute_side_title"
-									}
-								},
-
-							]
-						},
-						{
-							type : "div",
-							attribute : {
-								"class" : "hero_attribute_wrap"
-							},
-							children : [
-								{
-									type     : "div",
-									property : { 
 										textContent : "Strength"
 									},
 									attribute : {
@@ -66,21 +33,12 @@ define({
 								{
 									type     : "div",
 									property : { 
-										textContent : hero.strength.starting
+										textContent : hero.strength.starting +" + "+ hero.strength.gain
 									},
 									attribute : {
 										"class" : "hero_attribute_field"
 									}
 								},
-								{
-									type     : "div",
-									property : { 
-										textContent : "+"+ hero.strength.gain
-									},
-									attribute : {
-										"class" : "hero_attribute_field"
-									}
-								}
 							]
 						},
 						{
@@ -101,21 +59,12 @@ define({
 								{
 									type     : "div",
 									property : { 
-										textContent : hero.agility.starting
+										textContent : hero.agility.starting +" + "+ hero.agility.gain
 									},
 									attribute : {
 										"class" : "hero_attribute_field"
 									}
 								},
-								{
-									type     : "div",
-									property : { 
-										textContent : "+"+ hero.agility.gain
-									},
-									attribute : {
-										"class" : "hero_attribute_field"
-									}
-								}
 							]
 						},
 						{
@@ -136,81 +85,12 @@ define({
 								{
 									type     : "div",
 									property : { 
-										textContent : hero.inteligence.starting
+										textContent : hero.inteligence.starting +" + "+ hero.inteligence.gain
 									},
 									attribute : {
 										"class" : "hero_attribute_field"
 									}
 								},
-								{
-									type     : "div",
-									property : { 
-										textContent : "+"+ hero.inteligence.gain
-									},
-									attribute : {
-										"class" : "hero_attribute_field"
-									}
-								}
-							]
-						}
-					]
-				},
-				{
-					type : "div",
-					attribute : {
-						"class" : "hero_attributes"
-					},
-					children : [
-						{
-							type : "div",
-							attribute : {
-								"class" : "hero_attribute_wrap"
-							},
-							children : [
-								{
-									type     : "div",
-									property : { 
-										textContent : "Speed"
-									},
-									attribute : {
-										"class" : "hero_attribute_title"
-									}
-								},
-								{
-									type     : "div",
-									property : { 
-										textContent : hero.speed
-									},
-									attribute : {
-										"class" : "hero_attribute_field"
-									}
-								},
-							]
-						},
-						{
-							type : "div",
-							attribute : {
-								"class" : "hero_attribute_wrap"
-							},
-							children : [
-								{
-									type     : "div",
-									property : { 
-										textContent : "Armor"
-									},
-									attribute : {
-										"class" : "hero_attribute_title"
-									}
-								},
-								{
-									type     : "div",
-									property : { 
-										textContent : hero.armor
-									},
-									attribute : {
-										"class" : "hero_attribute_field"
-									}
-								}
 							]
 						},
 						{
@@ -248,6 +128,32 @@ define({
 								{
 									type     : "div",
 									property : { 
+										textContent : "Health"
+									},
+									attribute : {
+										"class" : "hero_attribute_title"
+									}
+								},
+								{
+									type     : "div",
+									property : { 
+										textContent : hero.health
+									},
+									attribute : {
+										"class" : "hero_attribute_field"
+									}
+								},
+							]
+						},
+						{
+							type : "div",
+							attribute : {
+								"class" : "hero_attribute_wrap"
+							},
+							children : [
+								{
+									type     : "div",
+									property : { 
 										textContent : "Mana"
 									},
 									attribute : {
@@ -264,15 +170,7 @@ define({
 									}
 								}
 							]
-						}
-					]
-				},
-				{
-					type : "div",
-					attribute : {
-						"class" : "hero_attributes"
-					},
-					children : [
+						},
 						{
 							type : "div",
 							attribute : {
@@ -282,7 +180,7 @@ define({
 								{
 									type     : "div",
 									property : { 
-										textContent : "Health"
+										textContent : "Armor"
 									},
 									attribute : {
 										"class" : "hero_attribute_title"
@@ -291,7 +189,33 @@ define({
 								{
 									type     : "div",
 									property : { 
-										textContent : hero.health
+										textContent : hero.armor
+									},
+									attribute : {
+										"class" : "hero_attribute_field"
+									}
+								}
+							]
+						},
+						{
+							type : "div",
+							attribute : {
+								"class" : "hero_attribute_wrap"
+							},
+							children : [
+								{
+									type     : "div",
+									property : { 
+										textContent : "Speed"
+									},
+									attribute : {
+										"class" : "hero_attribute_title"
+									}
+								},
+								{
+									type     : "div",
+									property : { 
+										textContent : hero.speed
 									},
 									attribute : {
 										"class" : "hero_attribute_field"

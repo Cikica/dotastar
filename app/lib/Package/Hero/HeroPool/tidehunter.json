@@ -42,7 +42,7 @@
 				}
 			},
 			"kraken_shell"     : {
-				"name"        : "kraken_shell",
+				"name"        : "Kraken Shell",
 				"description" : "Creates a thick armor shell that reduces physical damage and removes negative buffs when damage received reaches a critical threshold. Kraken Shell does not stack with items that provide Damage Block.",
 				"notes"       : "Only damage from player owned sources is counted towards buff removal. The counter will reset if no player owned damage is taken for 6 seconds. Kraken Shell removes most buffs, even if they are generally not purgable.",
 				"stats"       : {
