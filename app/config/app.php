@@ -118,7 +118,8 @@ return array(
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
-		'Illuminate\Workbench\WorkbenchServiceProvider'
+		'Illuminate\Workbench\WorkbenchServiceProvider',
+		'Cikica\Red\RedServiceProvider'
 	),
 
 	/*
@@ -185,7 +186,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Hero'            => 'Package\Hero\HeroDatabase',
-		'RED'             => 'Library\RedisElasticData'
+		'RED'             => 'Cikica\Red\RedFacade'
 	),
 
 );

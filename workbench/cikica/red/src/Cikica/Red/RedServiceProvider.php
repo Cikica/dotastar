@@ -9,7 +9,7 @@ class RedServiceProvider extends ServiceProvider {
 	 *
 	 * @var bool
 	 */
-	protected $defer = false;
+	protected $defer = true;
 
 	/**
 	 * Register the service provider.
@@ -18,7 +18,9 @@ class RedServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		//
+		$this->app->bind('RED', function () {
+			return new RedisElasticData();
+		});
 	}
 
 	/**
@@ -28,7 +30,7 @@ class RedServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array();
+		return array('RED');
 	}
 
 }
