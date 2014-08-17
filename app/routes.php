@@ -13,7 +13,7 @@
 
 Route::get('/', function()
 {
-	return Redirect::to('hero/kunkka');
+	return View::make('login');
 });
 
 Route::get('/hero/{name}', function($hero_name)
@@ -24,3 +24,9 @@ Route::get('/hero/{name}', function($hero_name)
 	));
 });
 
+Route::get('/build/{name}', function($hero_name)
+{
+	return View::make('build-hero', array(
+		'hero'   => str_replace("'", "\'", json_encode( Hero::get( $hero_name ) ) ),
+	));
+});
