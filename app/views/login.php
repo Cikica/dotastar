@@ -8,10 +8,8 @@
 		src="/js/login/entry.js">
 	</script>
 	<link rel="stylesheet" type="text/css" href="/css/login/main.css">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<!-- <div id="login" class="body"></div> -->
-	<script>
-	</script>
 </body>
 </html>

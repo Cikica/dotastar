@@ -1,0 +1,29 @@
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+body {
+  width: 100%;
+  margin: 0;
+  float: left;
+  font-family: Open Sans, Arial; }
+
+.box_wrap {
+  float: left;
+  width: 100%;
+  margin: 40px 0;
+  text-align: center; }
+
+.button {
+  color: #0296ff;
+  padding: 5px;
+  border: 1px solid #0296ff;
+  display: block;
+  margin: 0 auto;
+  width: 155px;
+  cursor: pointer; }
+  .button:hover {
+    background-color: #0296ff;
+    color: white; }
