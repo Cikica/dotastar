@@ -16,17 +16,17 @@ Route::get('/', function()
 	return View::make('login');
 });
 
-Route::get('/hero/{name}', function($hero_name)
-{
-	return View::make('view-heroes', array(
-		'hero'   => str_replace("'", "\'", json_encode( Hero::get( $hero_name ) ) ),
-		'heroes' => json_encode( RED::get('hero#list') )
-	));
-});
+// Route::get('build/{name}', function ( $hero_name ) 
+// { 
 
-Route::get('/build/{name}', function($hero_name)
-{
-	return View::make('build-hero', array(
-		'hero'   => str_replace("'", "\'", json_encode( Hero::get( $hero_name ) ) ),
-	));
-});
+// });
+
+// Route::get('find/{what}/{identity}', function ( $what, $identity ) 
+// { 
+	
+// });
+
+// Route::get('hub', function () 
+// { 
+
+// });

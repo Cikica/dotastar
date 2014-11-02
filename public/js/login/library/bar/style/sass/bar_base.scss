@@ -1,0 +1,48 @@
+.bar_wrap_base {
+	font-family : $font;
+	font-size   : $font_size;
+	line-height : $font_size;
+	width       : 100%;
+	float       : left;
+	width : 200px;
+}
+
+.bar_body_base {
+	width            : 100%;
+	float            : left;
+	height           : $unit*4;
+	background-color : $bar_color;
+}
+
+.bar_name_and_value_wrap_base {
+	width      : 98.5%;
+	float      : left;
+	text-align : right;
+	margin-top : $unit;
+}
+
+.bar_name_text_base {
+	color            : $bar_text_color;
+	background-color : $bar_color;
+	font-weight      : bold;
+	display          : inline-block;
+	margin-right     : $unit*2;
+	margin-bottom    : $unit;
+	padding-right    : $unit;
+}
+
+.bar_value_base {
+	color         : $bar_color;
+	display       : inline-block;
+	margin-right  : $unit*2;
+	margin-bottom : $unit;
+	font-weight   : bold;
+}
+
+.bar_indicator_base {
+	width            : 1.5%;
+	height           : $unit*5;
+	background-color : $bar_color;
+	display          : inline-block;
+	float            : right;
+}

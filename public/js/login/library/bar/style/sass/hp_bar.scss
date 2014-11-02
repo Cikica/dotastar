@@ -1,0 +1,30 @@
+@import "../../../../../../css/login/sass/import/paramater.scss";
+
+$bar_text_color : $light;
+$bar_color      : $light_green;
+
+@import "bar_base";
+
+.bar_for_hp_wrap {
+	@extend .bar_wrap_base;
+}
+
+.bar_for_hp_body {
+	@extend .bar_body_base;
+}
+
+.bar_for_hp_name_and_value_wrap {
+	@extend .bar_name_and_value_wrap_base;
+}
+
+.bar_for_hp_name_text {
+	@extend .bar_name_text_base;
+}
+
+.bar_for_hp_value_text {
+	@extend .bar_value_base;
+}
+
+.bar_for_hp_indicator {
+	@extend .bar_indicator_base;
+}

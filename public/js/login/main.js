@@ -3,38 +3,53 @@ define({
 	define : {
 		require : [
 			"background_image",
-			"eloquent"
+			"eloquent",
+			"bar"
 		]
 	},
 
-	make : function () {
+	make : function ( define ) {
+
+		var background_image, bar
+
 		this.library.background_image.make({
 			background : "/media/login/background/pa1.jpg",
 			fade       : "4",
 			class_name : {}
 		})
-		this.library.eloquent.make({
-			append_to  : document.body,
-			class_name : {
-				wrap   : "box_wrap",
-				button : {
-					"body" : "button"
-				}
+
+		bar = this.library.bar.make({
+			class_name                   : {},
+			use_builtin_class_definition : [
+				"HP",
+			],
+			recuperation                 : {
+				value      : "0.5",
+				operator   : "+",
+				orientaton : "left"
 			},
-			part       : [
-				{
-					type : "button",
-					name : "sign in with steam",
-					with : {
-						text  : "Sign In With Steam",
-						event : { 
-							click : function () {}
-						}
+			bar          : {
+				maximum_value : 1200,
+				definition    : [
+					{ 
+						name        : "HP",
+						value       : 600,
+						description : ""
 					}
-				}
-			]
+				]
+			}
 		})
-		console.log("entrude young messenger")
+
+		bar.append( document.body )
+		console.log( bar )
+
+		// bar.set_value([
+		// 	{
+		// 		"for"      : "HP",
+		// 		"which_is" : 500
+		// 	}
+		// ])
+
 	}
 	
 })

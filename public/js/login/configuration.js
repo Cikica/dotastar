@@ -1,5 +1,4 @@
 define({
-	// style: "",
 	name    : "main",
 	main    : "main",
 	start   : { 
@@ -10,6 +9,7 @@ define({
 	module  : [],
 	package : [
 		"library/background_image",
-		"library/eloquent"
+		"library/eloquent",
+		"library/bar"
 	]
 })
