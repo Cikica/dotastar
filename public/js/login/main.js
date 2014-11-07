@@ -22,6 +22,8 @@ define({
 			class_name                   : {},
 			use_builtin_class_definition : [
 				"HP",
+				"EHP",
+				"Magic HP"
 			],
 			recuperation                 : {
 				value      : "0.5",
@@ -34,6 +36,16 @@ define({
 					{ 
 						name        : "HP",
 						value       : 600,
+						description : ""
+					},
+					{ 
+						name        : "EHP",
+						value       : 700,
+						description : ""
+					},
+					{ 
+						name        : "Magic HP",
+						value       : 1000,
 						description : ""
 					}
 				]

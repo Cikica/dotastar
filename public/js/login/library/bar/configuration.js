@@ -1,6 +1,8 @@
 define({
 	style : [
-		"style/hp_bar.css"
+		"style/hp_bar.css",
+		"style/ehp_bar.css",
+		"style/magic_hp_bar.css"
 	],
 	name     : "bar",
 	main     : "bar",
