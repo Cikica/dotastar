@@ -35,17 +35,17 @@ define({
 				definition    : [
 					{ 
 						name        : "HP",
-						value       : 600,
+						value       : 500,
 						description : ""
 					},
 					{ 
 						name        : "EHP",
-						value       : 700,
+						value       : 1000,
 						description : ""
 					},
 					{ 
 						name        : "Magic HP",
-						value       : 1000,
+						value       : 700,
 						description : ""
 					}
 				]
