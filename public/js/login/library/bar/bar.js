@@ -24,24 +24,12 @@ define({
 			bar_body = this.library.transistor.make({
 				"class" : class_name.main_wrap,
 				"width" : "300px",
-				"child" : this.library.morph.index_loop({
-					subject : this.order_bar_definition_from_lowest_value_to_highest({
-						definition : define.bar.definition
-					}),
-					else_do : function ( loop ) {
-						return loop.into.concat( 
-							self.define_bar_body({
-								"class_name"        : class_name[loop.indexed.name],
-								"bar"               : loop.indexed,
-								"bar_index"         : loop.index,
-								"number_of_bars"    : define.bar.definition.length,
-								"maximum_bar_value" : define.bar.maximum_value,
-								"bar_pixel_width"   : 300,
-								"bar_height"        : 40
-							})
-						)
-					}
-				})
+				"child" : [
+					this.define_bar_container_and_bodies({
+						define     : define,
+						class_name : class_name 
+					})
+				]
 			})
 		}
 
@@ -59,8 +47,35 @@ define({
 		}
 
 		return this.define_interface({
-			body : bar_body
+			body : bar_body,
+			with : define
 		})
+	},
+
+	define_bar_container_and_bodies : function ( bar ) {
+		var self = this
+		return {
+			"float" : "left",
+			"width" : "100%",
+			"child" : this.library.morph.index_loop({
+				subject : this.order_bar_definition_from_lowest_value_to_highest({
+					definition : bar.define.bar.definition
+				}),
+				else_do : function ( loop ) {
+					return loop.into.concat( 
+						self.define_bar_body({
+							"class_name"        : bar.class_name[loop.indexed.name],
+							"bar"               : loop.indexed,
+							"bar_index"         : loop.index,
+							"number_of_bars"    : bar.define.bar.definition.length,
+							"maximum_bar_value" : bar.define.bar.maximum_value,
+							"bar_pixel_width"   : 500,
+							"bar_height"        : 40
+						})
+					)
+				}
+			})
+		}
 	},
 
 	define_interface : function ( define ) {
@@ -70,16 +85,30 @@ define({
 			body      : define.body.body,
 			append    : define.body.append,
 			set_value : function ( set ) {
-				var new_values
-				if ( set.for.constructor === Array ) {
-					new_values = self.library.morph.index_loop({
-						subject : set.for,
-						else_do : function ( loop ) {
+				
+				var new_definition, new_bar_container_and_bars
 
+				if ( set.for.constructor === Array ) {
+					new_definition = self.library.morph.index_loop({
+						subject : define.with.bar.definition,
+						into    : self.library.morph.index_loop({
+							subject : set.for,
+							else_do : function ( loop ) { 
+								return loop.into.concat({
+									name  : loop.indexed.bar,
+									value : loop.indexed.which_is
+								})
+							}
+						}),
+						else_do : function ( loop ) {
+							
 							return loop.into
 						}
 					})
 				}
+
+				// new_bar_container_and_bars = this.library.transistor.make()
+				define.body.body.removeChild( define.body.body.firstChild )
 
 				console.log( "setting value ")
 			}
@@ -120,14 +149,16 @@ define({
 			"maximum_bar_value" : define.maximum_bar_value,
 			"bar_height"        : define.bar_height
 		})
+
 		bar_body_definition = {
-			"class"    : define.class_name.wrap,
-			"width"    : calculated.bar_width_in_percent + "%",
-			"position" : "relative",
-			"clear"    : "both",
-			"mark_as"  : define.bar.name,
-			"top"      : "-" + calculated.bar_top_offset +"px",
-			"z-index"  : calculated.bar_z_index,
+			"class"      : define.class_name.wrap,
+			"position"   : "relative",
+			"clear"      : "both",
+			"data-value" : define.bar.value,
+			"data-name"  : define.bar.name,
+			"width"      : calculated.bar_width_in_percent + "%",
+			"top"        : "-" + calculated.bar_top_offset +"px",
+			"z-index"    : calculated.bar_z_index,
 			"child"    : [
 				{
 					"class"         : define.class_name.name_and_value_wrap,
@@ -144,7 +175,7 @@ define({
 						}
 					]
 				},
-				{ 
+				{
 					"margin-top" : calculated.number_of_pixels_to_move_body_down_by +"px",
 					"height"     : calculated.indicator_height +"px",
 					"class"      : define.class_name.indicator
@@ -160,7 +191,7 @@ define({
 	},
 
 	order_bar_definition_from_lowest_value_to_highest : function ( bar ) {
-
+		console.log( bar.definition )
 		var value_of_bars_from_lowest_to_highest, value_of_bar_to_definition
 
 		value_of_bar_to_definition           = this.library.morph.index_loop({

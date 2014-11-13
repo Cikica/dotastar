@@ -3,7 +3,6 @@ define({
 	define : {
 		require : [
 			"background_image",
-			"eloquent",
 			"bar"
 		]
 	},
@@ -58,7 +57,11 @@ define({
 			"for" : [
 				{
 					"bar"      : "HP",
-					"which_is" : 500
+					"which_is" : 700
+				},
+				{
+					"bar"      : "EHP",
+					"which_is" : 300
 				}
 			]
 		})

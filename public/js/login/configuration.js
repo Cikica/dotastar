@@ -9,7 +9,6 @@ define({
 	module  : [],
 	package : [
 		"library/background_image",
-		"library/eloquent",
 		"library/bar"
 	]
 })
