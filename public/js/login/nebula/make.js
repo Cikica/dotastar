@@ -23,7 +23,6 @@
 
 				// Here should have a way of spliting logic and loading important module 
 				// sections, such as styles, module loads perhaps more
-				console.log( module.root )
 				requirejs(
 					module.nebula.morph.index_loop({
 						subject : module.nebula.sort.get_module_paths_with_appended_root_directory({

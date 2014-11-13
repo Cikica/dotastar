@@ -53,14 +53,16 @@ define({
 		})
 
 		bar.append( document.body )
-		console.log( bar )
-
-		// bar.set_value([
-		// 	{
-		// 		"for"      : "HP",
-		// 		"which_is" : 500
-		// 	}
-		// ])
+		bar.set_value({
+			
+			"for" : [
+				{
+					"bar"      : "HP",
+					"which_is" : 500
+				}
+			]
+		})
+		// console.log( bar )
 
 	}
 	
