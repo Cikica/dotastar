@@ -1,5 +1,9 @@
 define({
 
+	define : { 
+		allow : "*"
+	},
+
 	copy : function (copy) {
 		if ( copy.what.constructor === Array && copy.object_array ) {
 			return this.index_loop({
@@ -146,6 +150,20 @@ define({
 		} else {
 			return this.index_loop_base(loop.else_do({
 				array    : this.copy({ what : loop.array }),
+				start_at : loop.start_at,
+				into     : loop.into,
+				if_done  : loop.if_done,
+				else_do  : loop.else_do
+			}))
+		}
+	},
+
+	index_loop_number : function (loop) {
+		if ( loop.start_at >= loop.of_times ) {
+			return loop.if_done(loop)
+		} else {
+			return this.index_loop_number(loop.else_do({
+				of_times : loop.of_times,
 				start_at : loop.start_at,
 				into     : loop.into,
 				if_done  : loop.if_done,

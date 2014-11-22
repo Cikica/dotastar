@@ -24,12 +24,12 @@ define({
 				"EHP",
 				"Magic HP"
 			],
-			recuperation                 : {
-				value      : "0.5",
-				operator   : "+",
-				orientaton : "left"
-			},
 			bar          : {
+				recuperation : {
+					value      : "0.5",
+					operator   : "+",
+					orientaton : "left"
+				},
 				maximum_value : 1200,
 				definition    : [
 					{ 
@@ -50,7 +50,7 @@ define({
 				]
 			}
 		})
-
+		// console.log( bar )
 		bar.append( document.body )
 		bar.set_value({
 			

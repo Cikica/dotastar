@@ -5,13 +5,14 @@ define({
 		require : [
 			"transistor",
 			"morph",
-			"class_name"
+			"class_name",
+			"event_master",
 		]
 	},
 
 	make : function ( define ) {
 		
-		var bar_body, class_name, self
+		var bar_body, class_name, self, event_circle
 
 		self       = this
 		class_name = ( define.use_builtin_class_definition ?
@@ -46,10 +47,101 @@ define({
 			})
 		}
 
-		return this.define_interface({
-			body : bar_body,
-			with : define
+		event_circle = this.library.event_master.make({
+			state  : this.define_state({
+				body : bar_body,
+				with : define 
+			}),
+			events : this.define_event({})
 		})
+		event_circle.add_listener(
+			this.define_listener({
+				class_name : define.class_name
+			})
+		)
+
+		return this.define_interface({
+			body         : bar_body,
+			event_circle : event_circle,
+			with         : define
+		})
+	},
+
+	define_interface : function ( define ) {
+		var self
+		self = this
+		return { 
+			body      : define.body.body,
+			append    : define.body.append,
+			set_value : function ( set ) {
+
+				define.event_circle.stage_event({
+					called : "set bar value",
+					as     : function ( state ) {
+
+						var new_definition
+						
+						
+						if ( set.for.constructor === Array ) {
+							new_definition = self.library.morph.index_loop({
+								subject : define.with.bar.definition,
+								into    : self.library.morph.index_loop({
+									subject : set.for,
+									else_do : function ( loop ) { 
+										return loop.into.concat({
+											name  : loop.indexed.bar,
+											value : loop.indexed.which_is
+										})
+									}
+								}),
+								else_do : function ( loop ) {
+									
+									return loop.into
+								}
+							})
+						}
+						console.log( new_definition )
+						console.log( state.bar.definition )
+
+						return {
+							state : state,
+							event : {
+								target : define.body.body
+							}
+						}
+					}
+				})
+			}
+		}
+	},
+
+	define_state : function ( define ) {
+		return {
+			bar : define.with.bar
+		}
+	},
+
+	define_event : function ( define ) {
+		return [
+			{
+				called : "set bar value",
+			}
+		]
+	},
+
+	define_listener : function ( define ) {
+		return [
+			{
+				for       : "set bar value",
+				that_does : function ( heard ) {
+					console.log( heard )
+					return heard
+					// console.log( define )
+					// // new_bar_container_and_bars = this.library.transistor.make()
+					// define.body.body.removeChild( define.body.body.firstChild )
+				}
+			}
+		]
 	},
 
 	define_bar_container_and_bodies : function ( bar ) {
@@ -75,43 +167,6 @@ define({
 					)
 				}
 			})
-		}
-	},
-
-	define_interface : function ( define ) {
-		var self
-		self = this
-		return { 
-			body      : define.body.body,
-			append    : define.body.append,
-			set_value : function ( set ) {
-				
-				var new_definition, new_bar_container_and_bars
-
-				if ( set.for.constructor === Array ) {
-					new_definition = self.library.morph.index_loop({
-						subject : define.with.bar.definition,
-						into    : self.library.morph.index_loop({
-							subject : set.for,
-							else_do : function ( loop ) { 
-								return loop.into.concat({
-									name  : loop.indexed.bar,
-									value : loop.indexed.which_is
-								})
-							}
-						}),
-						else_do : function ( loop ) {
-							
-							return loop.into
-						}
-					})
-				}
-
-				// new_bar_container_and_bars = this.library.transistor.make()
-				define.body.body.removeChild( define.body.body.firstChild )
-
-				console.log( "setting value ")
-			}
 		}
 	},
 
@@ -191,7 +246,7 @@ define({
 	},
 
 	order_bar_definition_from_lowest_value_to_highest : function ( bar ) {
-		console.log( bar.definition )
+		
 		var value_of_bars_from_lowest_to_highest, value_of_bar_to_definition
 
 		value_of_bar_to_definition           = this.library.morph.index_loop({

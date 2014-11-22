@@ -3,7 +3,8 @@ define({
 	define : {
 		require : [
 			"morphism"
-		]
+		],
+		allow : "*"
 	},
 
 	make : function (circle) {
@@ -27,7 +28,7 @@ define({
 				return this.event.listeners[group_name]
 			},
 			add_event : function (event) {
-				var self, circle_self
+				var circle_self
 				circle_self          = this
 				event                = ( event.constructor === Object ? [event] : event )
 				this.event.listeners = self.library.morphism.index_loop({
