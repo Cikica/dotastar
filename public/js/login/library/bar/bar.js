@@ -79,7 +79,8 @@ define({
 					called : "set bar value",
 					as     : function ( state ) {
 
-						var new_bar_definition, names_of_all_bars, indexes_of_left_out_bars
+						var new_bar_definition, names_of_all_bars, indexes_of_left_out_bars,
+						final_bar_definition
 
 						names_of_all_bars = self.get_name_of_bars_from_bar_definition({
 							definition : state.bar.definition
@@ -100,24 +101,26 @@ define({
 								return loop.into
 							}
 						})
-						indexes_of_left_out_bars = self.library.morph.index_loop({
-							subject : self.library.morph.surject_array({
-								array : names_of_all_bars,
-								with  : self.get_name_of_bars_from_bar_definition({
-									definition : new_bar_definition
-								})
-							}),
-							else_do : function ( loop ) {
-								return loop.into.concat( names_of_all_bars.indexOf( loop.indexed ) )
-							}
-						})
+						final_bar_definition = self.library.morph.inject_array({
+							array : new_bar_definition,
+							with  : self.library.morph.index_loop({
+								subject : self.library.morph.surject_array({
+									array : names_of_all_bars,
+									with  : self.get_name_of_bars_from_bar_definition({
+										definition : new_bar_definition
+									})
+								}),
+								else_do : function ( loop ) {
 
-						console.log( names_of_all_bars )
-						console.log( self.get_name_of_bars_from_bar_definition({
-							definition : new_bar_definition
-						}) )
-						console.log( new_bar_definition )
-						console.log( indexes_of_left_out_bars )
+									var bar_index
+									bar_index = names_of_all_bars.indexOf( loop.indexed )
+									return loop.into.concat(
+										define.with.bar.definition[bar_index]
+									)
+								}
+							})
+						})
+						console.log( final_bar_definition )
 
 						return {
 							state : state,
