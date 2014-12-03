@@ -79,29 +79,45 @@ define({
 					called : "set bar value",
 					as     : function ( state ) {
 
-						var new_definition
-						
-						
-						if ( set.for.constructor === Array ) {
-							new_definition = self.library.morph.index_loop({
-								subject : define.with.bar.definition,
-								into    : self.library.morph.index_loop({
-									subject : set.for,
-									else_do : function ( loop ) { 
-										return loop.into.concat({
-											name  : loop.indexed.bar,
-											value : loop.indexed.which_is
-										})
-									}
-								}),
-								else_do : function ( loop ) {
-									
-									return loop.into
+						var new_bar_definition, names_of_all_bars, indexes_of_left_out_bars
+
+						names_of_all_bars = self.get_name_of_bars_from_bar_definition({
+							definition : state.bar.definition
+						})
+						new_bar_definition = self.library.morph.index_loop({
+							subject : define.with.bar.definition,
+							into    : self.library.morph.index_loop({
+								subject : set.for,
+								else_do : function ( loop ) { 
+									return loop.into.concat({
+										name  : loop.indexed.bar,
+										value : loop.indexed.which_is
+									})
 								}
-							})
-						}
-						console.log( new_definition )
-						console.log( state.bar.definition )
+							}),
+							else_do : function ( loop ) {
+								
+								return loop.into
+							}
+						})
+						indexes_of_left_out_bars = self.library.morph.index_loop({
+							subject : self.library.morph.surject_array({
+								array : names_of_all_bars,
+								with  : self.get_name_of_bars_from_bar_definition({
+									definition : new_bar_definition
+								})
+							}),
+							else_do : function ( loop ) {
+								return loop.into.concat( names_of_all_bars.indexOf( loop.indexed ) )
+							}
+						})
+
+						console.log( names_of_all_bars )
+						console.log( self.get_name_of_bars_from_bar_definition({
+							definition : new_bar_definition
+						}) )
+						console.log( new_bar_definition )
+						console.log( indexes_of_left_out_bars )
 
 						return {
 							state : state,
@@ -243,6 +259,15 @@ define({
 		}
 		
 		return bar_body_definition
+	},
+
+	get_name_of_bars_from_bar_definition : function ( bar ) { 
+		return this.library.morph.index_loop({
+			subject : bar.definition,
+			else_do : function ( loop ) {
+				return loop.into.concat( loop.indexed.name )
+			}
+		})
 	},
 
 	order_bar_definition_from_lowest_value_to_highest : function ( bar ) {
