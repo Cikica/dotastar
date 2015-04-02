@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('../assets/icons/icomoon.eot?ut22r8');
-	src:url('../assets/icons/icomoon.eot?#iefixut22r8') format('embedded-opentype'),
-		url('../assets/icons/icomoon.woff?ut22r8') format('woff'),
-		url('../assets/icons/icomoon.ttf?ut22r8') format('truetype'),
-		url('../assets/icons/icomoon.svg?ut22r8#icomoon') format('svg');
+	src:url('../assets/icons/dotastrat.eot?ut22r8');
+	src:url('../assets/icons/dotastrat.eot?#iefixut22r8') format('embedded-opentype'),
+		url('../assets/icons/dotastrat.woff?ut22r8') format('woff'),
+		url('../assets/icons/dotastrat.ttf?ut22r8') format('truetype'),
+		url('../assets/icons/dotastrat.svg?ut22r8#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -25,4 +25,16 @@
 
 .icon_search:before {
 	content: "\e600";
+}
+
+.icon_settings:before {
+	content: "\e601";
+}
+
+.icon_team:before {
+	content: "\e602";
+}
+
+.icon_view:before {
+	content: "\e603";
 }

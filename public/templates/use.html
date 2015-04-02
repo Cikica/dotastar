@@ -1,0 +1,46 @@
+<div class="menu">
+	<div class="menu_profile">
+		<div class="menu_profile_winrate">
+			<div class="menu_profile_winrate_inner">
+
+				<div class="menu_profile_winrate_wrap">
+					<div class="menu_profile_winrate_image">
+						<img 
+							class="menu_profile_winrate_image_source"
+							src="{{ profile.avatar }}"
+						>
+					</div>
+					<div class="menu_profile_winrate_pie" data-start="0" data-value="100"></div>
+					<div 
+						class="menu_profile_winrate_pie menu_profile_winrate_big_pie" 
+						data-start="100"
+						data-value="260"
+					>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="menu_profile_name">
+			{{ profile.username }}
+		</div>
+	</div>
+
+	<div class="menu_controls">
+		<div class="menu_controls_button" ng-repeat="button in buttons">
+			<div class="icon_menu_controls_button_{{ button.name }}"></div>
+			<div class="menu_controls_button_name">
+				{{ button.name }}
+			</div>
+			<div class="menu_controls_button_notification" ng-if="button.notifications > 0">
+				<div class="menu_controls_button_notification_number">
+					{{ button.notifications }}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div ui-view></div>
+</div>

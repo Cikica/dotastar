@@ -364,8 +364,8 @@ html {
 
 @font-face {
   font-family: 'icomoon';
-  src: url("../assets/icons/icomoon.eot?ut22r8");
-  src: url("../assets/icons/icomoon.eot?#iefixut22r8") format("embedded-opentype"), url("../assets/icons/icomoon.woff?ut22r8") format("woff"), url("../assets/icons/icomoon.ttf?ut22r8") format("truetype"), url("../assets/icons/icomoon.svg?ut22r8#icomoon") format("svg");
+  src: url("../assets/icons/dotastrat.eot?ut22r8");
+  src: url("../assets/icons/dotastrat.eot?#iefixut22r8") format("embedded-opentype"), url("../assets/icons/dotastrat.woff?ut22r8") format("woff"), url("../assets/icons/dotastrat.ttf?ut22r8") format("truetype"), url("../assets/icons/dotastrat.svg?ut22r8#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
 [class^="icon_"], [class*=" icon_"] {
@@ -382,6 +382,15 @@ html {
 
 .icon_search:before, .icon_menu_controls_button_search:before {
   content: "\e600"; }
+
+.icon_settings:before, .icon_menu_controls_button_settings:before {
+  content: "\e601"; }
+
+.icon_team:before, .icon_menu_controls_button_team:before {
+  content: "\e602"; }
+
+.icon_view:before, .icon_menu_controls_button_saved:before {
+  content: "\e603"; }
 
 .menu {
   width: 210px;
@@ -527,11 +536,13 @@ html {
   color: white;
   background-color: #192636; }
 
-.menu_controls_button_icon, .icon_menu_controls_button_search {
+.menu_controls_button_icon, .icon_menu_controls_button_search, .icon_menu_controls_button_team, .icon_menu_controls_button_saved, .icon_menu_controls_button_settings {
   display: inline-block;
   float: left;
   padding-top: 3px;
-  margin-right: 16px; }
+  margin-right: 16px;
+  font-size: 18px;
+  line-height: 18px; }
 
 .menu_controls_button_name {
   text-transform: uppercase;

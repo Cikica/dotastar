@@ -40,10 +40,27 @@ $menu_button_adjust_to_center_height:floor( ( $menu_button_height - $menu_font_s
 	float: left;
 	padding-top:$menu_button_adjust_to_center_height;
 	margin-right: $unit*4;
+	font-size: $menu_icon_size;
+	line-height: $menu_icon_size;
 }
 
 .icon_menu_controls_button_search {
 	@extend .icon_search;
+	@extend .menu_controls_button_icon;
+}
+
+.icon_menu_controls_button_team {
+	@extend .icon_team;
+	@extend .menu_controls_button_icon;
+}
+
+.icon_menu_controls_button_saved {
+	@extend .icon_view;
+	@extend .menu_controls_button_icon;
+}
+
+.icon_menu_controls_button_settings {
+	@extend .icon_settings;
 	@extend .menu_controls_button_icon;
 }
 
