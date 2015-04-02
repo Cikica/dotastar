@@ -24,13 +24,26 @@
 
 	<div class="menu_controls">
 		<div class="menu_controls_button">
-			<div class="menu_controls_button_icon">
+			<div class="icon_menu_controls_button_search">
+			</div>
+			<div class="menu_controls_button_name">
+				Search
+			</div>
+			<!-- <div class="menu_controls_button_notification">
+				<div class="menu_controls_button_notification_number">
+					5
+				</div>
+			</div> -->
+		</div>
+		<div class="menu_controls_button_active">
+			<div class="icon_menu_controls_button_search">
 			</div>
 			<div class="menu_controls_button_name">
 				Team
 			</div>
 			<div class="menu_controls_button_notification">
 				<div class="menu_controls_button_notification_number">
+					5
 				</div>
 			</div>
 		</div>

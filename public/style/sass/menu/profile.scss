@@ -19,12 +19,15 @@
 @include avatar-winrate( 
 	menu_profile_winrate, 
 	$menu_avatar_size, 
-	$unit 
+	$unit,
+	$menu_blue,
+	$menu_blue_light,
+	$winrate_lose
 );
 
 .menu_profile_name {
 	width: 100%;
 	text-align: center;
 	float: left;
-	margin-top : $unit*2;
+	margin-top: $unit*2;
 }

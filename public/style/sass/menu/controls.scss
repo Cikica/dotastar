@@ -1,0 +1,75 @@
+
+$menu_button_height:$menu_font_size*1.5;
+$menu_button_adjust_to_center_height:floor( ( $menu_button_height - $menu_font_size )/2 );
+
+.menu_controls {
+	width: 100%;
+	float: left;
+}
+
+.menu_controls_button_base {
+	width: 100%;
+	float: left;
+	padding: $unit*3 $unit*4;
+}
+
+.menu_controls_button {
+	@extend .menu_controls_button_base;
+	border-left: $unit solid $menu_blue;
+	&:hover {
+		border-left: $unit solid $menu_blue_light_darker;
+		color:$menu_text_dark;
+		background-color: $menu_blue_light_darker;
+	}
+	&:active {
+		border-left: $unit solid $menu_blue_light;
+		color: $menu_text_light;
+		background-color: $menu_blue_darker;
+	}
+}
+
+.menu_controls_button_active {
+	@extend .menu_controls_button_base;
+	border-left: $unit solid $menu_blue_light;
+	color: $menu_text_light;
+	background-color: $menu_blue_darker;
+}
+
+.menu_controls_button_icon {
+	display: inline-block;
+	float: left;
+	padding-top:$menu_button_adjust_to_center_height;
+	margin-right: $unit*4;
+}
+
+.icon_menu_controls_button_search {
+	@extend .icon_search;
+	@extend .menu_controls_button_icon;
+}
+
+.menu_controls_button_name {
+	text-transform: uppercase;
+	font-weight: bold;
+	float: left;
+	display: inline-block;
+	padding-top:$menu_button_adjust_to_center_height;
+	cursor: default;
+	height : $menu_button_height;
+}
+
+.menu_controls_button_notification {
+	float: right;
+	display: inline-block;
+}
+
+.menu_controls_button_notification_number {
+	background-color: $menu_blue_light;
+	width: $menu_button_height;
+	height : $menu_button_height;
+	border-radius:$menu_button_height/3;
+	padding-top: $menu_button_adjust_to_center_height;
+	color: $menu_blue;
+	font-weight: bold;
+	text-align: center;
+	cursor: default;
+}

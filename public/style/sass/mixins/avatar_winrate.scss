@@ -1,4 +1,4 @@
-@mixin avatar-winrate ( $name, $pie_size, $unit ) {
+@mixin avatar-winrate ( $name, $pie_size, $unit, $avatar_border_color, $win_color, $lose_color ) {
 
 	$half_of_pie: $pie_size/2;
 	$image_size: $half_of_pie + ($unit*4.5);
@@ -18,7 +18,7 @@
 		left: $how_much_adjustment_to_center;
 		margin-top: $how_much_adjustment_to_center;
 		border-radius : $image_size;
-		border : $unit solid $menu_blue;
+		border : $unit solid $avatar_border_color;
 		overflow: hidden;
 	}
 
@@ -42,12 +42,12 @@
 			height:$half_of_pie*2;
 			left:-$half_of_pie;
 			border-radius:$half_of_pie 0 0 $half_of_pie;
-			background-color: $menu_blue_light;
+			background-color: $win_color;
 			@include transform-origin( right, center );
 		}
 
 		&:after { 
-			background-color: $menu_blue_light;
+			background-color: $win_color;
 		}
 	}
 
@@ -59,7 +59,7 @@
 
 		&:before { 
 			left:0px;
-			background-color:$menu_text;	
+			background-color:$lose_color
 		}
 
 		&:after { 
@@ -69,7 +69,7 @@
 			height:$half_of_pie*2;
 			left:$half_of_pie;
 			border-radius:0 $half_of_pie $half_of_pie 0;
-			background-color:$menu_text;
+			background-color:$lose_color
 		}
 	}
 
