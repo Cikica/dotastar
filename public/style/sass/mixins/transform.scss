@@ -1,0 +1,15 @@
+@mixin rotate( $how_much ) {
+	-moz-transform: rotate($how_much);
+	-ms-transform: rotate($how_much);
+	-webkit-transform: rotate($how_much);
+	-o-transform: rotate($how_much);
+	transform:rotate($how_much);
+}
+
+@mixin transform-origin( $first_orientation, $second_orientation ) {
+	-moz-transform-origin:$first_orientation $second_orientation;
+	-ms-transform-origin:$first_orientation $second_orientation;
+	-o-transform-origin:$first_orientation $second_orientation;
+	-webkit-transform-origin:$first_orientation $second_orientation;
+	transform-origin:$first_orientation $second_orientation;
+}

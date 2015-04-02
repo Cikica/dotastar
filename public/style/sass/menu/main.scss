@@ -1,0 +1,39 @@
+@import "paramaters";
+
+.menu {
+	width: $menu_width;
+	height: 100%;
+	float: left;
+	display: inline-block;
+	position: absolute;
+	background-color: $menu_blue;
+	color : $menu_text;
+	font-size: $menu_font_size;
+	line-height: $menu_line_height;
+}
+
+@import "profile";
+
+.menu_controls {
+
+}
+
+.menu_controls_button {
+
+}
+
+.menu_controls_button_icon {
+
+}
+
+.menu_controls_button_name {
+
+}
+
+.menu_controls_button_notification {
+
+}
+
+.menu_controls_button_notification_number {
+
+}

@@ -1,0 +1,88 @@
+@mixin avatar-winrate ( $name, $pie_size, $unit ) {
+
+	$half_of_pie: $pie_size/2;
+	$image_size: $half_of_pie + ($unit*4.5);
+	$how_much_adjustment_to_center: $half_of_pie - ($image_size/2);
+
+	.#{$name}_wrap {
+		width : $pie_size;
+		height : $pie_size;
+	}
+
+	.#{$name}_image {
+		
+		position: absolute;
+		z-index : 1;
+		width:  $image_size;
+		height: $image_size;
+		left: $how_much_adjustment_to_center;
+		margin-top: $how_much_adjustment_to_center;
+		border-radius : $image_size;
+		border : $unit solid $menu_blue;
+		overflow: hidden;
+	}
+
+	.#{$name}_image_source { 
+		height: 100%;
+	}
+
+	.#{$name}_pie {
+		position:absolute;
+		width:$half_of_pie;
+		height:$half_of_pie*2;
+		overflow:hidden;
+		left:$half_of_pie;
+
+		@include transform-origin( left, center );
+
+		&:before { 
+			content:"";
+			position:absolute;
+			width:$half_of_pie;
+			height:$half_of_pie*2;
+			left:-$half_of_pie;
+			border-radius:$half_of_pie 0 0 $half_of_pie;
+			background-color: $menu_blue_light;
+			@include transform-origin( right, center );
+		}
+
+		&:after { 
+			background-color: $menu_blue_light;
+		}
+	}
+
+	.#{$name}_pie.#{$name}_big_pie {
+		width:$half_of_pie*2;
+		height:$half_of_pie*2;
+		left: 0px;
+		@include transform-origin( center, center );
+
+		&:before { 
+			left:0px;
+			background-color:$menu_text;	
+		}
+
+		&:after { 
+			content:"";
+			position:absolute;
+			width:$half_of_pie;
+			height:$half_of_pie*2;
+			left:$half_of_pie;
+			border-radius:0 $half_of_pie $half_of_pie 0;
+			background-color:$menu_text;
+		}
+	}
+
+
+	.#{$name}_pie[data-start="100"] {
+		@include rotate( 100deg );
+	}
+
+	.#{$name}_pie[data-value="100"]:BEFORE {
+		@include rotate( 101deg );
+	}
+
+	.#{$name}_pie[data-value="260"]:BEFORE {
+		@include rotate( 260deg );
+	}
+}
