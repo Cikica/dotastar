@@ -1,4 +1,11 @@
-@mixin avatar-winrate ( $name, $pie_size, $unit, $avatar_border_color, $win_color, $lose_color ) {
+@mixin avatar-winrate ( 
+	$name, 
+	$pie_size, 
+	$unit, 
+	$avatar_border_color, 
+	$win_color, 
+	$lose_color 
+) {
 
 	$half_of_pie: $pie_size/2;
 	$image_size: $half_of_pie + ($unit*4.5);
@@ -73,16 +80,14 @@
 		}
 	}
 
+	
+	@for $i from 1 through 360 {
+		.#{$name}_pie[data-start="#{$i}"] {
+			@include rotate( #{$i}deg );
+		}
 
-	.#{$name}_pie[data-start="100"] {
-		@include rotate( 100deg );
-	}
-
-	.#{$name}_pie[data-value="100"]:BEFORE {
-		@include rotate( 101deg );
-	}
-
-	.#{$name}_pie[data-value="260"]:BEFORE {
-		@include rotate( 260deg );
+		.#{$name}_pie[data-value="#{$i}"]:BEFORE {
+			@include rotate( #{$i+1}deg );
+		}
 	}
 }

@@ -10,12 +10,15 @@ $menu_button_adjust_to_center_height:floor( ( $menu_button_height - $menu_font_s
 .menu_controls_button_base {
 	width: 100%;
 	float: left;
-	padding: $unit*3 $unit*4;
+	padding: $unit*2 $unit*4 $unit*2 $unit*2;
 }
 
 .menu_controls_button {
 	@extend .menu_controls_button_base;
 	border-left: $unit solid $menu_blue;
+	text-decoration: none;
+	color: $menu_text;
+	cursor: default;
 	&:hover {
 		border-left: $unit solid $menu_blue_light_darker;
 		color:$menu_text_dark;
@@ -33,13 +36,14 @@ $menu_button_adjust_to_center_height:floor( ( $menu_button_height - $menu_font_s
 	border-left: $unit solid $menu_blue_light;
 	color: $menu_text_light;
 	background-color: $menu_blue_darker;
+	cursor: default;
 }
 
 .menu_controls_button_icon {
 	display: inline-block;
 	float: left;
 	padding-top:$menu_button_adjust_to_center_height;
-	margin-right: $unit*4;
+	margin-right: $unit*3;
 	font-size: $menu_icon_size;
 	line-height: $menu_icon_size;
 }
@@ -55,12 +59,17 @@ $menu_button_adjust_to_center_height:floor( ( $menu_button_height - $menu_font_s
 }
 
 .icon_menu_controls_button_saved {
-	@extend .icon_view;
+	@extend .icon_saved;
 	@extend .menu_controls_button_icon;
 }
 
 .icon_menu_controls_button_settings {
 	@extend .icon_settings;
+	@extend .menu_controls_button_icon;
+}
+
+.icon_menu_controls_button_chat {
+	@extend .icon_chat;
 	@extend .menu_controls_button_icon;
 }
 

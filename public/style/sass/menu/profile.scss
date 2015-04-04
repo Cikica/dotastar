@@ -1,9 +1,8 @@
 .menu_profile {
 	width: 100%;
 	float: left;
-	border-bottom: $unit solid $menu_blue_darker;
+	border-bottom: $unit/2 solid $menu_blue_darker;
 	padding-top: $unit*5;
-	padding-bottom: $unit*6;
 }
 
 .menu_profile_winrate { 
@@ -30,4 +29,27 @@
 	text-align: center;
 	float: left;
 	margin-top: $unit*2;
+	font-size:$menu_profile_font_size;
+	line-height:$menu_profile_line_height;
+}
+
+.menu_profile_control {
+	width: 100%;
+	float: left;
+}
+
+.icon_menu_profile_control_button {
+	$control_button_size:$unit*5;
+	@extend .icon_small_arrow;
+	height: $control_button_size;
+	width: $control_button_size;
+	float: right;
+	&:before {
+		position: relative;
+		top: $unit;
+		left: $unit;
+	}
+	&:hover {
+		background-color: $menu_blue_darker;
+	}
 }

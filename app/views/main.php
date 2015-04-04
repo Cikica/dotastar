@@ -13,6 +13,7 @@
 	<script src="main.js"></script>
 	<script src="states.js"></script>
 	<script src="module/menu/menu.js"></script>
+	<script src="module/menu/menuController.js"></script>
 
 </head>
 

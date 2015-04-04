@@ -1,3 +1,4 @@
+
 @font-face {
 	font-family: 'icomoon';
 	src:url('../assets/icons/dotastrat.eot?ut22r8');
@@ -21,6 +22,18 @@
 	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon_small_arrow:before {
+	content: "\e605";
+}
+
+.icon_saved:before {
+	content: "\e606";
+}
+
+.icon_chat:before {
+	content: "\e604";
 }
 
 .icon_search:before {

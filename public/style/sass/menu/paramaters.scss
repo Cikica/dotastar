@@ -1,6 +1,9 @@
-$menu_font_size : 14px;
-$menu_line_height : 14px;
-$menu_icon_size:$menu_font_size+$unit;
+$menu_icon_size:11px+$unit;
+$menu_profile_font_size: 12px;
+$menu_profile_line_height: $menu_profile_font_size;
+$menu_font_size: 10px;
+$menu_line_height: $menu_font_size;
+
 $menu_blue: rgb( 28, 43, 62 );
 $menu_blue_light : rgb( 41, 152, 207 );
 $menu_blue_light_darker: rgb( 27, 40, 57 );
@@ -8,6 +11,7 @@ $menu_blue_darker: rgb( 25, 38, 54 );
 $menu_text: rgb( 132, 139, 147 );
 $menu_text_dark: rgb( 135, 149, 166 );
 $menu_text_light: rgb( 255, 255, 255 );
-$menu_avatar_size:$unit*15;
+$menu_avatar_size:$unit*13;
 $winrate_lose:rgb( 68, 80, 96);
-$menu_width:$menu_avatar_size*3.5;
+
+$menu_width:($menu_avatar_size+($unit*1.5))*3;
