@@ -81,13 +81,13 @@
 	}
 
 	
-	@for $i from 1 through 360 {
-		.#{$name}_pie[data-start="#{$i}"] {
-			@include rotate( #{$i}deg );
-		}
+	// @for $i from 1 through 360 {
+	// 	.#{$name}_pie[data-start="#{$i}"] {
+	// 		@include rotate( #{$i}deg );
+	// 	}
 
-		.#{$name}_pie[data-value="#{$i}"]:BEFORE {
-			@include rotate( #{$i+1}deg );
-		}
-	}
+	// 	.#{$name}_pie[data-value="#{$i}"]:BEFORE {
+	// 		@include rotate( #{$i+1}deg );
+	// 	}
+	// }
 }

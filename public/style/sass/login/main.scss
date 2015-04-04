@@ -1,0 +1,42 @@
+@import "paramaters";
+
+.login {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	float: left;
+	background-color: $menu_blue;
+	text-align: center;
+}
+
+.login_title {
+	width: 100%;
+	float: left;
+	margin-top: $unit*20;
+	margin-bottom: $unit*4;
+}
+
+.login_title_text {
+	font-weight: bold;
+	font-size:$login_title_size;
+	line-height:$login_title_line_height;
+	color: $menu_text_light;
+	margin-bottom: $unit*4;
+}
+
+.login_title_tagline {
+	text-transform: uppercase;
+	font-weight: bold;
+	color: $menu_text_light;
+}
+
+.login_button {
+	background-color: $menu_blue_light;
+	padding: $unit*2;
+	color: $menu_text_light;
+	width: 15%;
+	margin: 0 42.5%;
+	border-radius:8px;
+	float: left;
+	cursor: pointer;
+}

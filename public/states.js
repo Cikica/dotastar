@@ -3,7 +3,12 @@ angular.module("dotastrat").config([
 	"$urlRouterProvider",
 	function ( $stateProvider, $urlRouterProvider ) {
 
-		$urlRouterProvider.otherwise("/use/search");
+		$urlRouterProvider.otherwise("/login");
+
+		$stateProvider.state("login", {
+			url : "/login",
+			templateUrl : "templates/login.html",
+		});
 
 		$stateProvider.state("use", {
 			url : "/use",

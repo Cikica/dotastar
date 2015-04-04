@@ -18,7 +18,6 @@
 </head>
 
 <body class="wrap" ng-app="dotastrat">
-	<?php //echo View::make("menu"); ?>
 	<div ui-view></div>
 </body>
 
